@@ -6,14 +6,14 @@ Visit [AcademyCraft's Website](http://ac.li-dev.cn/) or [AcademyCraft Github Pag
 
 API Usage
 ====
-# Events
-## AbilityBreakBlockEvent
+## Events
+### AbilityBreakBlockEvent
 Called whenever an ability breaks a block
-### Player getPlayer()
+#### Player getPlayer()
 returns the player that broke the block
-### Block getBlock()
+#### Block getBlock()
 returns the Block that was broken with the ability
-### AbilityBreakBlockEvent.SkillType getSkillType()
+#### AbilityBreakBlockEvent.SkillType getSkillType()
 returns the skill that was used to break the block (currently always returns SkillType.UNKNOWN, awaiting support from mod)
 
 This plugin is developed by berry64
