@@ -17,6 +17,8 @@ import net.berry64.academybukkit.support.*;
  */
 public final class AcademyBukkit extends JavaPlugin {
     
+	private static CoreProtectHook coreProtectHook = null;
+	
     public static void init(){
 
         Class<?> adapter = null;
@@ -59,7 +61,11 @@ public final class AcademyBukkit extends JavaPlugin {
         if(player != null) {
         	AbilityBreakBlockEvent evt = new AbilityBreakBlockEvent(player, block);
         	Bukkit.getPluginManager().callEvent(evt);
-        	return evt.isCancelled();
+        	boolean result = evt.isCancelled();
+        	if(coreProtectHook != null && !result) {
+        		coreProtectHook.logPlayerBlockBreak(block, player);
+        	}
+        	return result;
         } else {
         	DummyAbilityBreakBlockEvent evt = new DummyAbilityBreakBlockEvent(block);
         	Bukkit.getPluginManager().callEvent(evt);
@@ -83,6 +89,11 @@ public final class AcademyBukkit extends JavaPlugin {
     	if(manager.getPlugin("PlotSquared") != null) {
     		manager.registerEvents(new PlotSquaredSupport(), this);
     		getLogger().info("PlotSquared Support Activated");
+    	}
+    	
+    	if(manager.getPlugin("CoreProtect") != null) {
+    		coreProtectHook = new CoreProtectHook();
+    		getLogger().info("Successfully Hooked into CoreProtect");
     	}
     }
     
