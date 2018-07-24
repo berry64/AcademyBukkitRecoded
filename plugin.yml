@@ -2,7 +2,7 @@ name: AcademyBukkit
 description: Allow server-side customizations of the behaviors of AcademyCraft 
 version: 1.0.1
 softdepend: [PlotSquared, Residence]
-main: net.berry64.academyBukkit.AcademyBukkit
+main: net.berry64.academybukkit.AcademyBukkit
 
 commands:
   academybukkit:
